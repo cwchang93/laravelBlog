@@ -18,23 +18,8 @@ use Illuminate\Support\Facades\Route;
 //     return view('index');
 // });
 
-Route::view('/', 'index')->name('index');
+Route::get('/', 'IndexController@index')->name('index');
 
-Route::view('/login', 'login')->name('login');
+Route::get('/login', 'IndexController@login')->name('login');
 
-Route::get('/blog-post/{id}/{welcome?}', function ($id, $welcome = 1) {
-    $pages = [
-        1 => [
-            'title' => 'from page 1',
-        ],
-        2 => [
-            'title' => 'from page 2',
-        ],
-    ];
-    $welcomes = [1 => '<b>Hello </b> ', 2 => 'Welcome to '];
-
-    return view('blog-post', [
-        'data' => $pages[$id],
-        'welcome' => $welcomes[$welcome],
-    ]);
-})->name('blog-post');
+Route::get('/blog-post/{id}/{welcome?}', 'IndexController@blogPost')->name('blog-post');
