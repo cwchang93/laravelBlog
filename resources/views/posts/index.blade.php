@@ -7,6 +7,9 @@
                 <a href="{{ route('posts.show', ['post'=> $post->id]) }}">
                     {{ $post-> title }}
                 </a>
+                <a href="{{ route('posts.edit', ['post'=> $post->id]) }}">
+                    Edit
+                </a>
             </h3>
         </p>
     @empty

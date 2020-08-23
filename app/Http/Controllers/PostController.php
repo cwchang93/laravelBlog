@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\StorePost;
 use \App\BlogPost;
 
 class PostController extends Controller
@@ -27,6 +27,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
+        // $request->session()->reflash();
         return view('posts.show', ['post' => BlogPost::findOrFail($id)]);
     }
 
@@ -35,16 +36,29 @@ class PostController extends Controller
         return view('posts.create');
     }
 
-    public function store(Request $request)
+    public function store(StorePost $request)
     {
         // dd($request->all());
-        $blogPost = new BlogPost();
-        $blogPost->title = $request->input('title');
-        $blogPost->content = $request->input('content');
-        $blogPost->save();
+
+        $validatedData = $request->validated();
+        $blogPost = BlogPost::create($validatedData);
+
+        // $blogPost = new BlogPost();
+        // $blogPost->title = $request->input('title');
+        // $blogPost->content = $request->input('content');
+        // $blogPost->save();
+
+        $request->session()->flash('status', 'Blog Post was created!');
 
         return redirect()->route('posts.show', ['post' => $blogPost->id]);
         // dd($title, $content);
+    }
+
+    public function edit($id)
+    {
+        $post = BlogPost::findOrFail($id);
+        return view('posts.edit', ['post' => $post]);
+
     }
 
 }
