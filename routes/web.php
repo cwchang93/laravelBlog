@@ -22,4 +22,4 @@ Route::get('/', 'IndexController@index')->name('index');
 
 Route::get('/login', 'IndexController@login')->name('login');
 
-Route::get('/blog-post/{id}/{welcome?}', 'IndexController@blogPost')->name('blog-post');
+Route::resource('/posts', 'PostController')->only(['index', 'show', 'create', 'store']); // 一開始只要display資料 

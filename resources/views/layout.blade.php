@@ -11,9 +11,9 @@
     <ul>
         <li><a href="{{ route('index') }}">首頁</a></li>
         <li><a href="{{ route('login') }}">login</a></li>
-        <li><a href="{{ route('blog-post', ['id' => 1]) }}">blog Post 1</a></li>
+        <li><a href="{{ route('posts.index') }}"> Blog Posts</a></li>
+        <li><a href="{{ route('posts.create') }}"> Create Blog</a></li>
     </ul>
-
 
     @yield('content')
 
