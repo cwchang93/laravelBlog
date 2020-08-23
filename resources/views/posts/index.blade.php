@@ -10,6 +10,15 @@
                 <a href="{{ route('posts.edit', ['post'=> $post->id]) }}">
                     Edit
                 </a>
+            
+                <form method="POST" action="{{ route('posts.destroy', ['post'=> $post->id]) }}">
+                        @csrf
+                        @method('DELETE')
+                        {{-- <button type="submit">Delete!</button> --}}
+                        <input type="submit" />
+
+                    </form>
+
             </h3>
         </p>
     @empty

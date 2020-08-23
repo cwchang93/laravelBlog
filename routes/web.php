@@ -22,5 +22,4 @@ Route::get('/', 'IndexController@index')->name('index');
 
 Route::get('/login', 'IndexController@login')->name('login');
 
-Route::resource('/posts', 'PostController')
-    ->except(['destroy']);
+Route::resource('/posts', 'PostController');
